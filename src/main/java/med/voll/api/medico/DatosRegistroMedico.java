@@ -13,7 +13,9 @@ public record DatosRegistroMedico(
         @Email
         String email,
         @NotBlank
-        @Pattern(regexp = "\\:d{4,10}")
+        String telefono,
+        @NotBlank
+       // @Pattern(regexp = "\\:d{4,10}")
         String documento,
         @NotNull
         Especialidad especialidad,
