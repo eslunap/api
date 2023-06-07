@@ -8,7 +8,8 @@ import jakarta.validation.constraints.Pattern;
 import med.voll.api.direccion.DatosDireccion;
 
 public record DatosRegistroMedico(
-        @NotBlank String nombre,
+        @NotBlank
+        String nombre,
         @NotBlank
         @Email
         String email,
