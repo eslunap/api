@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping("/medicos")
@@ -70,4 +69,15 @@ public class MedicoController {
       Medico medico = medicoRepository.getReferenceById(id);
       medicoRepository.delete(medico);
    }*/
+
+   @GetMapping("/{id}") //Path Variable
+   public ResponseEntity<DatosRespuestaMedico> retornaDatosMedico(@PathVariable Long id){
+      Medico medico = medicoRepository.getReferenceById(id);
+      var datosMedico = new DatosRespuestaMedico(medico.getId(), medico.getNombre(), medico.getEmail(),
+              medico.getTelefono(),medico.getDocumento(), medico.getEspecialidad().toString(),
+              new DatosDireccion(medico.getDireccion().getCalle(), medico.getDireccion().getDistrito(),
+                      medico.getDireccion().getCiudad(),medico.getDireccion().getNumero(),
+                      medico.getDireccion().getComplemento()));
+      return ResponseEntity.ok(datosMedico);
+   }
 }
