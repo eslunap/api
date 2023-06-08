@@ -48,4 +48,8 @@ public class Medico {
             this.direccion = direccion.actualizarDatos(datosActualizarMedico.direccion());
         }
     }
+
+    public void desactivarMedico() {
+        this.activo = false;
+    }
 }
