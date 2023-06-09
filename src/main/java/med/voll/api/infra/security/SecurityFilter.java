@@ -21,13 +21,14 @@ public class SecurityFilter extends OncePerRequestFilter {
         System.out.println("El filtro está siendo llamado");
         //Obtener token de los headers
         var token = request.getHeader("Authorization");//.replace("Bearer ","");
-        if (token == "" || token == null){
+/*        if (token == "" || token == null){
             throw new RuntimeException("El token enviado no es válido");
+        }*/
+        if (token !=null) {
+            token = token.replace("Bearer ", "");
+            System.out.println(token);
+            System.out.println("tokenService: " + tokenService.getSubject(token)); //Este usuario tiene sesión?
         }
-        token = token.replace("Bearer ", "");
-        System.out.println(token);
-        System.out.println("tokenService: " + tokenService.getSubject(token)); //Este usuario tiene sesión?
-
         filterChain.doFilter(request, response);
     }
 }
