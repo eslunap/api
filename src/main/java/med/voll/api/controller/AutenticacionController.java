@@ -3,6 +3,7 @@ package med.voll.api.controller;
 import jakarta.validation.Valid;
 import med.voll.api.domain.usuario.DatosAutenticarUsuario;
 import med.voll.api.domain.usuario.Usuario;
+import med.voll.api.infra.security.DatosJWTtoken;
 import med.voll.api.infra.security.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,6 @@ public class AutenticacionController {
 
         var JWTtoken = tokenService.generarToken((Usuario) usuarioAutenticado.getPrincipal());
 
-        return ResponseEntity.ok(JWTtoken);
+        return ResponseEntity.ok(new DatosJWTtoken(JWTtoken));
     }
 }
