@@ -25,6 +25,7 @@ public class SecurityFilter extends OncePerRequestFilter {
             throw new RuntimeException("El token enviado no es válido");
         }*/
         if (token !=null) {
+            System.out.println("Validamos que token no es null");
             token = token.replace("Bearer ", "");
             System.out.println(token);
             System.out.println("tokenService: " + tokenService.getSubject(token)); //Este usuario tiene sesión?
